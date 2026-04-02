@@ -1,0 +1,6 @@
+[deps]
+FytcUtilities = "d9e1aad1-ef5d-4be6-a5bf-f5c472fa8b62"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[sources]
+FytcUtilities = {path = ".."}

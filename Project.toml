@@ -2,3 +2,6 @@ name = "FytcUtilities"
 uuid = "d9e1aad1-ef5d-4be6-a5bf-f5c472fa8b62"
 version = "0.1.0"
 authors = ["Quan-feng WU <wuquanfeng@ihep.ac.cn>"]
+
+[workspace]
+projects = ["test"]
