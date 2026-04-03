@@ -6,5 +6,6 @@
 module FytcUtilities
 
 include("geomspace.jl")
+include("PlotRegistries.jl")
 
 end # module FytcUtilities
