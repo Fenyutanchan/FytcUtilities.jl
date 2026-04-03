@@ -1,7 +1,7 @@
 # FytcUtilities
 
 [![CI](https://github.com/Fenyutanchan/FytcUtilities.jl/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Fenyutanchan/FytcUtilities.jl/actions/workflows/ci.yml)
-[![doc:dev](https://img.shields.io/badge/doc-dev-blue)](https://fytc.ac/FytcUtilities.jl/dev/)
+[![doc:latest](https://img.shields.io/badge/doc-latest-blue)](https://fytc.ac/FytcUtilities.jl/)
 
 Julia utilities for numerical workflows and plot artifact tracking.
 
