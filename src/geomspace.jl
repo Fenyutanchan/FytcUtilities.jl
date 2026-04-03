@@ -31,19 +31,17 @@ If constraints are violated, an `AssertionError` is thrown.
 
 # Examples
 ```jldoctest
-julia> geomspace(1.0, 1000.0, 4)
-4-element Vector{Float64}:
-    1.0
-   10.0
-  100.0
- 1000.0
+julia> using FytcUtilities
 
-julia> geomspace(-1.0, -1000.0, 4)
-4-element Vector{Float64}:
-    -1.0
-   -10.0
-  -100.0
- -1000.0
+julia> xs = geomspace(1.0, 1000.0, 4);
+
+julia> xs ≈ [1.0, 10.0, 100.0, 1000.0]
+true
+
+julia> ys = geomspace(-1.0, -1000.0, 4);
+
+julia> ys ≈ [-1.0, -10.0, -100.0, -1000.0]
+true
 ```
 """
 function geomspace(start_point, end_point, num::Int)::Vector

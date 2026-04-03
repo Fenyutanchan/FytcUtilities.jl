@@ -1,0 +1,6 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+FytcUtilities = "d9e1aad1-ef5d-4be6-a5bf-f5c472fa8b62"
+
+[sources]
+FytcUtilities = {path = ".."}
