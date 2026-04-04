@@ -151,11 +151,23 @@ end
         @test entries[1].file == "fig1.pdf"
         
         @test length(suggested_files) == 1
-        @test suggested_files[1] == normpath(plot2)
+        @test suggested_files[1] == realpath(plot2)
         
-        # Test prune with no stale entries
+        # Test prune when both script AND plot file are already deleted
+        plot3 = joinpath(tmpdir, "fig3.pdf")
+        script3 = joinpath(tmpdir, "script3.jl")
+        write(script3, "# script 3")
+        write(plot3, "plot 3")
+        FytcUtilities.plot_register!(reg, plot3, script3)
+        
+        # Remove both script and plot file
+        rm(script3)
+        rm(plot3)
+        
         suggested_files = FytcUtilities.prune_plots!(reg)
-        @test length(suggested_files) == 0
+        entries = FytcUtilities.list_plots(reg)
+        @test length(entries) == 1
+        @test length(suggested_files) == 0  # No suggestion since plot file is already gone
     end
 end
 

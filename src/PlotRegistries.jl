@@ -252,8 +252,9 @@ function prune_plots!(reg::PlotRegistry)
         scriptpath = joinpath(dir, entry["script"])
         if !isfile(scriptpath)
             delete!(data, key)
-            file_to_delete = joinpath(dir, entry["file"]) |> normpath
-            isfile(file_to_delete) && push!(suggested_files_to_delete, file_to_delete)
+            file_to_delete = joinpath(dir, entry["file"])
+            # Only suggest deletion if the plot file still exists on disk
+            isfile(file_to_delete) && push!(suggested_files_to_delete, realpath(file_to_delete))
             changed = true
         end
     end
