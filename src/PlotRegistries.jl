@@ -185,8 +185,9 @@ end
 Convenience macro that auto-captures the source file via `@__FILE__`.
 """
 macro plot_register(reg, file, desc="")
+    src = String(__source__.file)
     quote
-        plot_register!($(esc(reg)), $(esc(file)), @__FILE__; description=$(esc(desc)))
+        plot_register!($(esc(reg)), $(esc(file)), $src; description=$(esc(desc)))
     end
 end
 

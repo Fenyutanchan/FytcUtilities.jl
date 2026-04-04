@@ -1,3 +1,6 @@
+using Test
+using FytcUtilities
+
 @testset "geomspace generates geometric sequences" begin
     result = FytcUtilities.geomspace(1, 1000, 4)
 

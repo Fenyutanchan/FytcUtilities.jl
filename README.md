@@ -7,6 +7,8 @@ Julia utilities for numerical workflows and plot artifact tracking.
 
 ## Install
 
+This package is **not registered** in the Julia General Registry. Install it directly from GitHub:
+
 ```julia
 pkg> add https://github.com/Fenyutanchan/FytcUtilities.jl
 ```

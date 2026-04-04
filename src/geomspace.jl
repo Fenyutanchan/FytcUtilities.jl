@@ -6,7 +6,7 @@
 export geomspace
 
 """
-    geomspace(start_point, end_point, num::Int)::Vector
+    geomspace(start_point, end_point, num::Int)
 
 Generate `num` points spaced evenly on a logarithmic scale between
 `start_point` and `end_point` (both endpoints included).
@@ -44,7 +44,7 @@ julia> ys ≈ [-1.0, -10.0, -100.0, -1000.0]
 true
 ```
 """
-function geomspace(start_point, end_point, num::Int)::Vector
+function geomspace(start_point, end_point, num::Int)
     total_ratio = end_point / start_point
     @assert total_ratio > 0 "End points should be the same sign!"
     @assert num ≥ 2 "Number of points should be greater than 1!"
