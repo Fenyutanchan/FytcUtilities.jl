@@ -6,28 +6,28 @@
 export geomspace
 
 """
-    geomspace(start_point, end_point, num::Int)
+    geomspace(start_point, end_point, num::Integer)
 
 Generate `num` points spaced evenly on a logarithmic scale between
 `start_point` and `end_point` (both endpoints included).
 
-The returned sequence has a constant multiplicative step:
-`result[i + 1] / result[i] == constant` for valid `i`.
+The returned sequence has an approximately constant multiplicative step:
+`result[i + 1] / result[i] ≈ constant` for valid `i`.
 
 # Arguments
 - `start_point`: First value of the sequence.
 - `end_point`: Last value of the sequence.
-- `num::Int`: Number of points to generate. Must satisfy `num >= 2`.
+- `num::Integer`: Number of points to generate. Must satisfy `num >= 2`.
 
 # Returns
 - A vector of length `num`.
 - `result[1] == start_point` and `result[end] == end_point`.
 
 # Constraints
-- `start_point` and `end_point` must have the same sign.
+- `start_point` and `end_point` must be finite, nonzero, and of the same sign.
 - `num` must be at least `2`.
 
-If constraints are violated, an `AssertionError` is thrown.
+If constraints are violated, an `ArgumentError` is thrown.
 
 # Examples
 ```jldoctest
@@ -44,14 +44,22 @@ julia> ys ≈ [-1.0, -10.0, -100.0, -1000.0]
 true
 ```
 """
-function geomspace(start_point, end_point, num::Int)
+function geomspace(start_point, end_point, num::Integer)
+    num ≥ 2 ||
+        throw(ArgumentError("`num` must be at least 2, got $num"))
+    (isfinite(start_point) && isfinite(end_point)) ||
+        throw(ArgumentError("endpoints must be finite, got $start_point and $end_point"))
+    (iszero(start_point) || iszero(end_point)) &&
+        throw(ArgumentError("endpoints must be nonzero, got $start_point and $end_point"))
     total_ratio = end_point / start_point
-    @assert total_ratio > 0 "End points should be the same sign!"
-    @assert num ≥ 2 "Number of points should be greater than 1!"
+    total_ratio > 0 ||
+        throw(ArgumentError("endpoints must have the same sign, got $start_point and $end_point"))
 
-    step_multiplier = exp(log(total_ratio) / (num - 1))
+    # Compute each point's exponent independently, rather than raising a shared
+    # step multiplier to successive powers, so per-point rounding error does not
+    # compound along the sequence.
     result_list = [
-        start_point * step_multiplier^(ii - 1)
+        start_point * total_ratio^((ii - 1) / (num - 1))
         for ii ∈ 1:num-1
     ]
     push!(result_list, end_point)

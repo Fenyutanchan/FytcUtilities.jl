@@ -24,7 +24,16 @@ end
     @test result == [2.0, 8.0]
 end
 
+@testset "geomspace accepts any Integer for num" begin
+    result = FytcUtilities.geomspace(1.0, 10.0, Int32(2))
+
+    @test result == [1.0, 10.0]
+end
+
 @testset "geomspace validates inputs" begin
-    @test_throws AssertionError FytcUtilities.geomspace(1, -10, 4)
-    @test_throws AssertionError FytcUtilities.geomspace(1, 10, 1)
+    @test_throws ArgumentError FytcUtilities.geomspace(1, -10, 4)   # opposite signs
+    @test_throws ArgumentError FytcUtilities.geomspace(1, 10, 1)    # num < 2
+    @test_throws ArgumentError FytcUtilities.geomspace(0, 10, 4)    # zero start point
+    @test_throws ArgumentError FytcUtilities.geomspace(1, 0, 4)     # zero end point
+    @test_throws ArgumentError FytcUtilities.geomspace(NaN, 10, 4)  # non-finite
 end
