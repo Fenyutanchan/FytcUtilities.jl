@@ -6,7 +6,7 @@ const ON_CI = get(ENV, "CI", "false") == "true"
 
 makedocs(
     sitename = "FytcUtilities.jl",
-    modules = [FytcUtilities, FytcUtilities.PlotRegistries],
+    modules = [FytcUtilities],
     root = DOCS_ROOT,
     source = "docs/src",
     build = "docs/build",

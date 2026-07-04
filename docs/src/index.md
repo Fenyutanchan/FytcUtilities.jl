@@ -1,15 +1,6 @@
 # FytcUtilities
 
-`FytcUtilities` provides utilities for numerical workflows and plot artifact tracking.
-
-## Modules
-
-- `FytcUtilities`
-- `FytcUtilities.PlotRegistries`
-
-```@docs
-FytcUtilities.PlotRegistries
-```
+`FytcUtilities` provides utilities for numerical workflows.
 
 ## Exported APIs
 
@@ -19,15 +10,13 @@ FytcUtilities.PlotRegistries
 FytcUtilities.geomspace
 ```
 
-### Plot Registry APIs
+## Plot registries
 
-```@docs
-FytcUtilities.PlotRegistries.PlotRegistry
-FytcUtilities.PlotRegistries.plot_register!
-FytcUtilities.PlotRegistries.plot_unregister!
-FytcUtilities.PlotRegistries.lookup_plot
-FytcUtilities.PlotRegistries.list_plots
-FytcUtilities.PlotRegistries.prune_plots!
-FytcUtilities.PlotRegistries.@plot_register
-FytcUtilities.PlotRegistries.@plot_unregister
-```
+The former `PlotRegistries` submodule lives in the standalone package
+[FytcPlotRegistries.jl](https://github.com/Fenyutanchan/FytcPlotRegistries.jl).
+
+`FytcUtilities` depends on `FytcPlotRegistries` and permanently re-exports its
+API (`PlotRegistry`, `plot_register!`, `plot_unregister!`, `lookup_plot`,
+`list_plots`, `prune_plots!`, `@plot_register`, `@plot_unregister`); the alias
+`FytcUtilities.PlotRegistries` also works. See the FytcPlotRegistries.jl
+documentation for the full API reference.
