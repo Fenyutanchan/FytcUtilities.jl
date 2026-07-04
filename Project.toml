@@ -7,7 +7,7 @@ authors = ["Quan-feng WU <wuquanfeng@ihep.ac.cn>"]
 projects = ["docs", "test"]
 
 [deps]
-TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+FytcPlotRegistries = "619bccf5-858e-452d-bbf1-5ad982edd25a"
 
 [compat]
-TOML = "1.0.3"
+FytcPlotRegistries = "0.1"
